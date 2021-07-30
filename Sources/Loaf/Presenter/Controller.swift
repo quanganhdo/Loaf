@@ -33,13 +33,7 @@ final class Controller: UIPresentationController {
     override func presentationTransitionWillBegin() {
         guard let containerView = containerView else { return }
 
-        var containerInsets: UIEdgeInsets
-        if #available(iOS 11, *) {
-            containerInsets = containerView.safeAreaInsets
-        } else {
-            let statusBarSize = UIApplication.shared.statusBarFrame.size
-            containerInsets = UIEdgeInsets(top: min(statusBarSize.width, statusBarSize.height), left: 0, bottom: 0, right: 0)
-        }
+        var containerInsets = containerView.safeAreaInsets
 
         if let tabBar = loaf.sender?.parent as? UITabBarController{
             containerInsets.bottom += tabBar.tabBar.frame.height
